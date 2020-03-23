@@ -12,6 +12,8 @@
 		4466609F242915550042B04F /* RegistrationFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4466609E242915550042B04F /* RegistrationFormViewController.swift */; };
 		446660A4242915560042B04F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 446660A3242915560042B04F /* Assets.xcassets */; };
 		446660A7242915560042B04F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 446660A5242915560042B04F /* LaunchScreen.storyboard */; };
+		446660AF242917190042B04F /* InputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446660AE242917190042B04F /* InputField.swift */; };
+		446660B124291CBA0042B04F /* FormButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446660B024291CBA0042B04F /* FormButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		446660A3242915560042B04F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		446660A6242915560042B04F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		446660A8242915560042B04F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		446660AE242917190042B04F /* InputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputField.swift; sourceTree = "<group>"; };
+		446660B024291CBA0042B04F /* FormButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +64,8 @@
 				446660A3242915560042B04F /* Assets.xcassets */,
 				446660A5242915560042B04F /* LaunchScreen.storyboard */,
 				446660A8242915560042B04F /* Info.plist */,
+				446660AE242917190042B04F /* InputField.swift */,
+				446660B024291CBA0042B04F /* FormButton.swift */,
 			);
 			path = RegistrationForm;
 			sourceTree = "<group>";
@@ -134,9 +140,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				446660B124291CBA0042B04F /* FormButton.swift in Sources */,
 				4466609F242915550042B04F /* RegistrationFormViewController.swift in Sources */,
 				4466609B242915550042B04F /* AppDelegate.swift in Sources */,
 				4466609D242915550042B04F /* SceneDelegate.swift in Sources */,
+				446660AF242917190042B04F /* InputField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
