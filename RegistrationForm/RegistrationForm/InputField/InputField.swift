@@ -8,35 +8,7 @@
 
 import UIKit
 
-protocol InputFieldViewModelProtocol {
-    var identifier: String { get }
-    var labelText: NSAttributedString { get }
-    var placeholder: NSAttributedString { get }
-    var value: String? { get }
-    var textDidChange: (String?) -> Void { get set }
-}
-
-struct InputFieldViewModel: InputFieldViewModelProtocol,  Hashable {
-
-    var identifier: String
-    var labelText: NSAttributedString
-    var placeholder: NSAttributedString
-    var value: String?
-    var textDidChange: (String?) -> Void
-
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(identifier)
-        hasher.combine(labelText)
-        hasher.combine(placeholder)
-        hasher.combine(value)
-    }
-
-    static func ==(lhs: InputFieldViewModel , rhs: InputFieldViewModel) -> Bool {
-        return lhs.hashValue == rhs.hashValue
-    }
-}
-
-class InputField<T: Hashable & InputFieldViewModelProtocol>: UIView {
+final class InputField<T: Hashable & InputFieldViewModelProtocol>: CommonView {
 
     private let label = UILabel()
     private let textField = UITextField()
@@ -46,18 +18,9 @@ class InputField<T: Hashable & InputFieldViewModelProtocol>: UIView {
 
     typealias ViewModel = T
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        commonInit()
-    }
-
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        commonInit()
-    }
-
-    func commonInit() {
-
+    override func commonInit() {
+        super.commonInit()
+        
         label.setContentHuggingPriority(.required, for: .vertical)
         textField.setContentCompressionResistancePriority(.required, for: .horizontal)
         textField.setContentCompressionResistancePriority(.required, for: .vertical)
@@ -100,7 +63,9 @@ class InputField<T: Hashable & InputFieldViewModelProtocol>: UIView {
     }
 
     @objc private func textFieldDidChange(field: UITextField) {
-        viewModel?.textDidChange(field.text )
+        guard let viewModel = viewModel else { return }
+
+        viewModel.textDidChange(field.text, viewModel)
     }
 
 }

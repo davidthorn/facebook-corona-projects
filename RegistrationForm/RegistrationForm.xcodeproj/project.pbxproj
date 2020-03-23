@@ -14,6 +14,17 @@
 		446660A7242915560042B04F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 446660A5242915560042B04F /* LaunchScreen.storyboard */; };
 		446660AF242917190042B04F /* InputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446660AE242917190042B04F /* InputField.swift */; };
 		446660B124291CBA0042B04F /* FormButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446660B024291CBA0042B04F /* FormButton.swift */; };
+		446660B3242926C50042B04F /* RegistrationField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446660B2242926C50042B04F /* RegistrationField.swift */; };
+		446660B6242926EB0042B04F /* FormButtonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446660B5242926EB0042B04F /* FormButtonViewModel.swift */; };
+		446660B8242926F70042B04F /* FormButtonViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446660B7242926F70042B04F /* FormButtonViewModelProtocol.swift */; };
+		446660BB242927190042B04F /* InputFieldViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446660BA242927190042B04F /* InputFieldViewModelProtocol.swift */; };
+		446660BD242927290042B04F /* InputFieldViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446660BC242927290042B04F /* InputFieldViewModel.swift */; };
+		446660C0242927450042B04F /* CommonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446660BF242927450042B04F /* CommonView.swift */; };
+		446660C2242927750042B04F /* CommonControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446660C1242927750042B04F /* CommonControl.swift */; };
+		446660C524292B6A0042B04F /* RegistrationOptionalFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446660C424292B6A0042B04F /* RegistrationOptionalFormData.swift */; };
+		446660C724292B7A0042B04F /* RegistrationFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446660C624292B7A0042B04F /* RegistrationFormData.swift */; };
+		446660C924292B960042B04F /* RegistrationFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446660C824292B960042B04F /* RegistrationFormViewModel.swift */; };
+		446660CB24292BA50042B04F /* RegistrationFormViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446660CA24292BA50042B04F /* RegistrationFormViewModelProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +37,17 @@
 		446660A8242915560042B04F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		446660AE242917190042B04F /* InputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputField.swift; sourceTree = "<group>"; };
 		446660B024291CBA0042B04F /* FormButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormButton.swift; sourceTree = "<group>"; };
+		446660B2242926C50042B04F /* RegistrationField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationField.swift; sourceTree = "<group>"; };
+		446660B5242926EB0042B04F /* FormButtonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormButtonViewModel.swift; sourceTree = "<group>"; };
+		446660B7242926F70042B04F /* FormButtonViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormButtonViewModelProtocol.swift; sourceTree = "<group>"; };
+		446660BA242927190042B04F /* InputFieldViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputFieldViewModelProtocol.swift; sourceTree = "<group>"; };
+		446660BC242927290042B04F /* InputFieldViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputFieldViewModel.swift; sourceTree = "<group>"; };
+		446660BF242927450042B04F /* CommonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonView.swift; sourceTree = "<group>"; };
+		446660C1242927750042B04F /* CommonControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonControl.swift; sourceTree = "<group>"; };
+		446660C424292B6A0042B04F /* RegistrationOptionalFormData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationOptionalFormData.swift; sourceTree = "<group>"; };
+		446660C624292B7A0042B04F /* RegistrationFormData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationFormData.swift; sourceTree = "<group>"; };
+		446660C824292B960042B04F /* RegistrationFormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationFormViewModel.swift; sourceTree = "<group>"; };
+		446660CA24292BA50042B04F /* RegistrationFormViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationFormViewModelProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,16 +80,59 @@
 		44666099242915550042B04F /* RegistrationForm */ = {
 			isa = PBXGroup;
 			children = (
+				446660C324292B620042B04F /* Models */,
+				446660BE2429273A0042B04F /* Common */,
+				446660B92429270B0042B04F /* InputField */,
+				446660B4242926E30042B04F /* FormButton */,
 				4466609A242915550042B04F /* AppDelegate.swift */,
 				4466609C242915550042B04F /* SceneDelegate.swift */,
 				4466609E242915550042B04F /* RegistrationFormViewController.swift */,
 				446660A3242915560042B04F /* Assets.xcassets */,
 				446660A5242915560042B04F /* LaunchScreen.storyboard */,
 				446660A8242915560042B04F /* Info.plist */,
-				446660AE242917190042B04F /* InputField.swift */,
-				446660B024291CBA0042B04F /* FormButton.swift */,
+				446660B2242926C50042B04F /* RegistrationField.swift */,
 			);
 			path = RegistrationForm;
+			sourceTree = "<group>";
+		};
+		446660B4242926E30042B04F /* FormButton */ = {
+			isa = PBXGroup;
+			children = (
+				446660B024291CBA0042B04F /* FormButton.swift */,
+				446660B5242926EB0042B04F /* FormButtonViewModel.swift */,
+				446660B7242926F70042B04F /* FormButtonViewModelProtocol.swift */,
+			);
+			path = FormButton;
+			sourceTree = "<group>";
+		};
+		446660B92429270B0042B04F /* InputField */ = {
+			isa = PBXGroup;
+			children = (
+				446660AE242917190042B04F /* InputField.swift */,
+				446660BA242927190042B04F /* InputFieldViewModelProtocol.swift */,
+				446660BC242927290042B04F /* InputFieldViewModel.swift */,
+			);
+			path = InputField;
+			sourceTree = "<group>";
+		};
+		446660BE2429273A0042B04F /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				446660BF242927450042B04F /* CommonView.swift */,
+				446660C1242927750042B04F /* CommonControl.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		446660C324292B620042B04F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				446660C424292B6A0042B04F /* RegistrationOptionalFormData.swift */,
+				446660C624292B7A0042B04F /* RegistrationFormData.swift */,
+				446660C824292B960042B04F /* RegistrationFormViewModel.swift */,
+				446660CA24292BA50042B04F /* RegistrationFormViewModelProtocol.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,11 +205,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				446660C2242927750042B04F /* CommonControl.swift in Sources */,
 				446660B124291CBA0042B04F /* FormButton.swift in Sources */,
+				446660C524292B6A0042B04F /* RegistrationOptionalFormData.swift in Sources */,
+				446660C0242927450042B04F /* CommonView.swift in Sources */,
+				446660BB242927190042B04F /* InputFieldViewModelProtocol.swift in Sources */,
 				4466609F242915550042B04F /* RegistrationFormViewController.swift in Sources */,
 				4466609B242915550042B04F /* AppDelegate.swift in Sources */,
 				4466609D242915550042B04F /* SceneDelegate.swift in Sources */,
+				446660C924292B960042B04F /* RegistrationFormViewModel.swift in Sources */,
 				446660AF242917190042B04F /* InputField.swift in Sources */,
+				446660C724292B7A0042B04F /* RegistrationFormData.swift in Sources */,
+				446660BD242927290042B04F /* InputFieldViewModel.swift in Sources */,
+				446660B6242926EB0042B04F /* FormButtonViewModel.swift in Sources */,
+				446660B8242926F70042B04F /* FormButtonViewModelProtocol.swift in Sources */,
+				446660B3242926C50042B04F /* RegistrationField.swift in Sources */,
+				446660CB24292BA50042B04F /* RegistrationFormViewModelProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

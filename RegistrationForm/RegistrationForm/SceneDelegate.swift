@@ -20,7 +20,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow.init(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
-        let rootViewController = RegistrationFormViewController()
+        let registrationViewModel = RegistrationFormViewModel(initialFormData: nil) { (formData) in
+            debugPrint(formData)
+        }
+        let rootViewController = RegistrationFormViewController<RegistrationFormViewModel>(viewModel: registrationViewModel)
         window?.rootViewController = UINavigationController(rootViewController: rootViewController)
         window?.makeKeyAndVisible()
     }

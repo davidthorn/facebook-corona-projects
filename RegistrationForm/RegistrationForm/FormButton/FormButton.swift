@@ -8,29 +8,7 @@
 
 import UIKit
 
-protocol FormButtonViewModelProtocol {
-    var identifier: String { get }
-    var labelText: NSAttributedString { get }
-    var tapHandler: () -> Void { get set }
-}
-
-struct FormButtonViewModel: FormButtonViewModelProtocol,  Hashable {
-
-    var identifier: String
-    var labelText: NSAttributedString
-    var tapHandler: () -> Void
-
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(identifier)
-        hasher.combine(labelText)
-    }
-
-    static func ==(lhs: FormButtonViewModel , rhs: FormButtonViewModel) -> Bool {
-        return lhs.hashValue == rhs.hashValue
-    }
-}
-
-class FormButton<T: Hashable & FormButtonViewModelProtocol>: UIControl {
+final class FormButton<T: Hashable & FormButtonViewModelProtocol>: CommonControl {
 
     private let label = UILabel()
 
@@ -38,18 +16,9 @@ class FormButton<T: Hashable & FormButtonViewModelProtocol>: UIControl {
 
     typealias ViewModel = T
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        commonInit()
-    }
-
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        commonInit()
-    }
-
-    func commonInit() {
-
+    override func commonInit() {
+        super.commonInit()
+        
         label.textAlignment = .center
         label.setContentHuggingPriority(.required, for: .vertical)
 
