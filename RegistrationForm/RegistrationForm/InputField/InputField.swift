@@ -11,7 +11,8 @@ import UIKit
 final class InputField<T: Hashable & InputFieldViewModelProtocol>: CommonView {
 
     private let label = UILabel()
-    private let textField = UITextField()
+    private let textField = CommonTextField<T.TextFieldViewModel>()
+    private let textFieldWrapper = BorderCommonView()
     private let stackView = UIStackView()
 
     var viewModel: ViewModel?
@@ -24,32 +25,14 @@ final class InputField<T: Hashable & InputFieldViewModelProtocol>: CommonView {
         label.setContentHuggingPriority(.required, for: .vertical)
         textField.setContentCompressionResistancePriority(.required, for: .horizontal)
         textField.setContentCompressionResistancePriority(.required, for: .vertical)
-
+        textFieldWrapper.addSubview(textField)
         stackView.axis = .vertical
         stackView.distribution = .fillProportionally
         stackView.spacing = 3
-
-        addSubview(stackView)
-
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-
-        NSLayoutConstraint.activate([
-            stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
-            stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15),
-            stackView.topAnchor.constraint(equalTo: topAnchor, constant: 15),
-            stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -15),
-            textField.heightAnchor.constraint(equalToConstant: 50)
-        ])
-
         stackView.addArrangedSubview(label)
-        stackView.addArrangedSubview(textField)
-
-        textField.backgroundColor = .yellow
-        textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
-
-        textField.layer.cornerRadius = 5
-        textField.layer.borderColor = UIColor.darkGray.cgColor
-        textField.layer.borderWidth = 1
+        stackView.addArrangedSubview(textFieldWrapper)
+        addSubview(stackView)
+        applyConstraints()
     }
 
     func setup(viewModel: ViewModel) {
@@ -58,15 +41,23 @@ final class InputField<T: Hashable & InputFieldViewModelProtocol>: CommonView {
         self.viewModel = viewModel
 
         label.attributedText = viewModel.labelText
-        textField.attributedPlaceholder = viewModel.placeholder
-        textField.text = viewModel.value
+        textField.setup(viewModel: viewModel.textFieldViewModel)
     }
 
-    @objc private func textFieldDidChange(field: UITextField) {
-        guard let viewModel = viewModel else { return }
+    private func applyConstraints() {
+        stackView.translatesAutoresizingMaskIntoConstraints = false
 
-        viewModel.textDidChange(field.text, viewModel)
+        NSLayoutConstraint.activate([
+            stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
+            stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15),
+            stackView.topAnchor.constraint(equalTo: topAnchor, constant: 0),
+            stackView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: 0),
+            textField.heightAnchor.constraint(equalToConstant: 50),
+            textField.leadingAnchor.constraint(equalTo: textFieldWrapper.leadingAnchor, constant: 6),
+            textField.trailingAnchor.constraint(equalTo: textFieldWrapper.trailingAnchor, constant: -6),
+            textField.topAnchor.constraint(equalTo: textFieldWrapper.topAnchor, constant: 0),
+            textField.bottomAnchor.constraint(equalTo: textFieldWrapper.bottomAnchor, constant: 0)
+        ])
     }
-
 }
 

@@ -25,6 +25,10 @@
 		446660C724292B7A0042B04F /* RegistrationFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446660C624292B7A0042B04F /* RegistrationFormData.swift */; };
 		446660C924292B960042B04F /* RegistrationFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446660C824292B960042B04F /* RegistrationFormViewModel.swift */; };
 		446660CB24292BA50042B04F /* RegistrationFormViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 446660CA24292BA50042B04F /* RegistrationFormViewModelProtocol.swift */; };
+		934CAEA02429599C00F4784F /* BorderCommonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934CAE9F2429599C00F4784F /* BorderCommonView.swift */; };
+		934CAEA2242959FF00F4784F /* CommonTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934CAEA1242959FF00F4784F /* CommonTextField.swift */; };
+		934CAEA424296E2800F4784F /* CommonTextFieldViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934CAEA324296E2800F4784F /* CommonTextFieldViewModelProtocol.swift */; };
+		934CAEA624296E3D00F4784F /* CommonTextFieldViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934CAEA524296E3D00F4784F /* CommonTextFieldViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +52,10 @@
 		446660C624292B7A0042B04F /* RegistrationFormData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationFormData.swift; sourceTree = "<group>"; };
 		446660C824292B960042B04F /* RegistrationFormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationFormViewModel.swift; sourceTree = "<group>"; };
 		446660CA24292BA50042B04F /* RegistrationFormViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationFormViewModelProtocol.swift; sourceTree = "<group>"; };
+		934CAE9F2429599C00F4784F /* BorderCommonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderCommonView.swift; sourceTree = "<group>"; };
+		934CAEA1242959FF00F4784F /* CommonTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonTextField.swift; sourceTree = "<group>"; };
+		934CAEA324296E2800F4784F /* CommonTextFieldViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonTextFieldViewModelProtocol.swift; sourceTree = "<group>"; };
+		934CAEA524296E3D00F4784F /* CommonTextFieldViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonTextFieldViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,7 +98,6 @@
 				446660A3242915560042B04F /* Assets.xcassets */,
 				446660A5242915560042B04F /* LaunchScreen.storyboard */,
 				446660A8242915560042B04F /* Info.plist */,
-				446660B2242926C50042B04F /* RegistrationField.swift */,
 			);
 			path = RegistrationForm;
 			sourceTree = "<group>";
@@ -118,8 +125,10 @@
 		446660BE2429273A0042B04F /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				934CAEA724296E4D00F4784F /* CommonTextField */,
 				446660BF242927450042B04F /* CommonView.swift */,
 				446660C1242927750042B04F /* CommonControl.swift */,
+				934CAE9F2429599C00F4784F /* BorderCommonView.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -127,12 +136,23 @@
 		446660C324292B620042B04F /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				446660B2242926C50042B04F /* RegistrationField.swift */,
 				446660C424292B6A0042B04F /* RegistrationOptionalFormData.swift */,
 				446660C624292B7A0042B04F /* RegistrationFormData.swift */,
 				446660C824292B960042B04F /* RegistrationFormViewModel.swift */,
 				446660CA24292BA50042B04F /* RegistrationFormViewModelProtocol.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		934CAEA724296E4D00F4784F /* CommonTextField */ = {
+			isa = PBXGroup;
+			children = (
+				934CAEA1242959FF00F4784F /* CommonTextField.swift */,
+				934CAEA324296E2800F4784F /* CommonTextFieldViewModelProtocol.swift */,
+				934CAEA524296E3D00F4784F /* CommonTextFieldViewModel.swift */,
+			);
+			path = CommonTextField;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -210,9 +230,13 @@
 				446660C524292B6A0042B04F /* RegistrationOptionalFormData.swift in Sources */,
 				446660C0242927450042B04F /* CommonView.swift in Sources */,
 				446660BB242927190042B04F /* InputFieldViewModelProtocol.swift in Sources */,
+				934CAEA02429599C00F4784F /* BorderCommonView.swift in Sources */,
+				934CAEA424296E2800F4784F /* CommonTextFieldViewModelProtocol.swift in Sources */,
+				934CAEA2242959FF00F4784F /* CommonTextField.swift in Sources */,
 				4466609F242915550042B04F /* RegistrationFormViewController.swift in Sources */,
 				4466609B242915550042B04F /* AppDelegate.swift in Sources */,
 				4466609D242915550042B04F /* SceneDelegate.swift in Sources */,
+				934CAEA624296E3D00F4784F /* CommonTextFieldViewModel.swift in Sources */,
 				446660C924292B960042B04F /* RegistrationFormViewModel.swift in Sources */,
 				446660AF242917190042B04F /* InputField.swift in Sources */,
 				446660C724292B7A0042B04F /* RegistrationFormData.swift in Sources */,
@@ -359,6 +383,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z5L45HU7SA;
 				INFOPLIST_FILE = RegistrationForm/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -377,6 +402,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z5L45HU7SA;
 				INFOPLIST_FILE = RegistrationForm/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

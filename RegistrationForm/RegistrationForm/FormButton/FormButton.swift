@@ -21,20 +21,9 @@ final class FormButton<T: Hashable & FormButtonViewModelProtocol>: CommonControl
         
         label.textAlignment = .center
         label.setContentHuggingPriority(.required, for: .vertical)
-
         addSubview(label)
-
-        label.translatesAutoresizingMaskIntoConstraints = false
-
-        NSLayoutConstraint.activate([
-            label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
-            label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15),
-            label.topAnchor.constraint(equalTo: topAnchor, constant: 15),
-            label.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -15),
-        ])
-
         addTarget(self, action: #selector(buttonWasTapped), for: .touchUpInside)
-
+        applyConstraints()
     }
 
     func setup(viewModel: ViewModel) {
@@ -56,6 +45,17 @@ final class FormButton<T: Hashable & FormButtonViewModelProtocol>: CommonControl
         layer.borderWidth = 1
         backgroundColor = .systemBlue
         label.textColor = .white
+    }
+
+    private func applyConstraints() {
+        label.translatesAutoresizingMaskIntoConstraints = false
+
+        NSLayoutConstraint.activate([
+            label.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
+            label.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15),
+            label.topAnchor.constraint(equalTo: topAnchor, constant: 15),
+            label.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -15),
+        ])
     }
 
 }

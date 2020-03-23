@@ -9,9 +9,8 @@
 import Foundation
 
 protocol InputFieldViewModelProtocol {
+    associatedtype TextFieldViewModel: Hashable & CommonTextFieldViewModelProtocol
     var identifier: String { get }
     var labelText: NSAttributedString { get }
-    var placeholder: NSAttributedString { get }
-    var value: String? { get }
-    var textDidChange: (_ value: String?, _ viewModel: InputFieldViewModelProtocol) -> Void { get set }
+    var textFieldViewModel: TextFieldViewModel { get }
 }

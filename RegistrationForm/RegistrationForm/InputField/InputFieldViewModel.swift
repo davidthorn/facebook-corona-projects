@@ -8,19 +8,17 @@
 
 import Foundation
 
-struct InputFieldViewModel: InputFieldViewModelProtocol,  Hashable {
+struct InputFieldViewModel<T: Hashable & CommonTextFieldViewModelProtocol>: InputFieldViewModelProtocol,  Hashable {
+
+    typealias TextFieldViewModel = T
 
     var identifier: String
     var labelText: NSAttributedString
-    var placeholder: NSAttributedString
-    var value: String?
-    var textDidChange: (_ value: String?, _ viewModel: InputFieldViewModelProtocol) -> Void
+    var textFieldViewModel: TextFieldViewModel
 
     func hash(into hasher: inout Hasher) {
         hasher.combine(identifier)
         hasher.combine(labelText)
-        hasher.combine(placeholder)
-        hasher.combine(value)
     }
 
     static func ==(lhs: InputFieldViewModel , rhs: InputFieldViewModel) -> Bool {

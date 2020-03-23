@@ -26,21 +26,75 @@ final class RegistrationFormViewController<T: RegistrationFormViewModelProtocol 
     private var optionalFormData = RegistrationOptionalFormData()
     private let scrollView = UIScrollView()
     private let stackView = UIStackView()
+    private let button = FormButton<FormButtonViewModel>()
+    private let buttonWrapper = CommonView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        view.backgroundColor = .white
+        view.addSubview(scrollView)
         stackView.axis = .vertical
         stackView.distribution = .fill
         stackView.alignment = .fill
         stackView.spacing = 15
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-
         scrollView.addSubview(stackView)
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        buttonWrapper.addSubview(button)
 
-        view.backgroundColor = .white
-        view.addSubview(scrollView)
+        let buttonHandler: () -> Void = {
+            debugPrint("The button was tapped")
+        }
+
+        let buttonViewModel = FormButtonViewModel(identifier: UUID().uuidString,
+                                                  labelText:  NSAttributedString(string: "Submit"),
+                                                  tapHandler: buttonHandler)
+
+        loadData()
+        
+        button.setup(viewModel: buttonViewModel)
+
+        applyConstraints()
+
+        viewModel.updateViewModels = { viewModelToUpdate in
+            self.stackView.arrangedSubviews
+                .compactMap { $0 as? InputField<T.FieldViewModel> }
+                .filter {
+                    if let viewModel = $0.viewModel {
+                        return viewModelToUpdate.contains(where: { $0.identifier == viewModel.identifier })
+                    }
+                    return false
+                }
+                .forEach { view in
+                    guard let viewModel = view.viewModel,
+                        let newViewModel = viewModelToUpdate.first(where: { $0.identifier == viewModel.identifier }) else {
+                        return
+                    }
+                    view.setup(viewModel: newViewModel)
+                    print(view)
+                }
+
+        }
+    }
+
+    private func loadData() {
+
+        stackView.subviews.forEach { subview in
+            subview.removeFromSuperview()
+        }
+
+        viewModel.formViewModels.forEach { viewModel in
+            let inputField = InputField<T.FieldViewModel>()
+            inputField.setup(viewModel: viewModel)
+            stackView.addArrangedSubview(inputField)
+        }
+        stackView.addArrangedSubview(buttonWrapper)
+
+    }
+
+    private func applyConstraints() {
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        button.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -50,81 +104,15 @@ final class RegistrationFormViewController<T: RegistrationFormViewModelProtocol 
 
             stackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            stackView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 15),
+            stackView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 8),
             stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            stackView.widthAnchor.constraint(equalTo: view.widthAnchor)
+            stackView.widthAnchor.constraint(equalTo: view.widthAnchor),
+
+            button.leadingAnchor.constraint(equalTo: buttonWrapper.leadingAnchor, constant: 15),
+            button.trailingAnchor.constraint(equalTo: buttonWrapper.trailingAnchor, constant: -15),
+            button.topAnchor.constraint(equalTo: buttonWrapper.topAnchor, constant: 15),
+            button.bottomAnchor.constraint(equalTo: buttonWrapper.bottomAnchor, constant: -15)
         ])
-
-        let buttonHandler: () -> Void = {
-            debugPrint("The button was tapped")
-        }
-
-        let textDidChangeHandler: (_ text: String?, _ viewModel: InputFieldViewModelProtocol) -> Void = { [weak self] (updateValue, viewModel) in
-            guard let strongSelf = self else { return }
-
-            let fieldValue = RegistrationField(rawValue: viewModel.identifier)
-
-
-            switch fieldValue {
-            case .name:
-                strongSelf.optionalFormData.name = nil
-                guard strongSelf.viewModel.isFieldValid(field: fieldValue, value: updateValue) else {
-                    return
-                }
-                strongSelf.optionalFormData.name = updateValue
-            case .lastname:
-                strongSelf.optionalFormData.lastname = nil
-                guard strongSelf.viewModel.isFieldValid(field: fieldValue, value: updateValue) else { return }
-                strongSelf.optionalFormData.lastname = updateValue
-            case .email:
-                strongSelf.optionalFormData.email = nil
-                guard strongSelf.viewModel.isFieldValid(field: fieldValue, value: updateValue) else { return }
-                strongSelf.optionalFormData.email = updateValue
-            case .password:
-                strongSelf.optionalFormData.password = nil
-                guard strongSelf.viewModel.isFieldValid(field: fieldValue, value: updateValue) else { return }
-                strongSelf.optionalFormData.password = updateValue
-            case .passwordConf:
-                strongSelf.optionalFormData.passwordConf = nil
-                 guard strongSelf.viewModel.isFieldValid(field: fieldValue, value: updateValue) else { return }
-                strongSelf.optionalFormData.passwordConf = updateValue
-            }
-
-            guard let formData = strongSelf.optionalFormData.formData else { return  }
-            strongSelf.viewModel.formSubmitted(formData)
-        }
-
-        let viewModels = RegistrationField.allCases.map { field in
-            return InputFieldViewModel(identifier: field.rawValue,
-                                       labelText: NSAttributedString(string: field.label),
-                                       placeholder: NSAttributedString(string: field.placeholder),
-                                       value: nil, textDidChange: textDidChangeHandler)
-        }
-
-        let buttonViewModel = FormButtonViewModel(identifier: UUID().uuidString,
-                                                  labelText:  NSAttributedString(string: "Submit"),
-                                                  tapHandler: buttonHandler)
-
-        let wrapper = UIView()
-        let button = FormButton<FormButtonViewModel>()
-        wrapper.addSubview(button)
-        button.translatesAutoresizingMaskIntoConstraints = false
-
-        NSLayoutConstraint.activate([
-            button.leadingAnchor.constraint(equalTo: wrapper.leadingAnchor, constant: 15),
-            button.trailingAnchor.constraint(equalTo: wrapper.trailingAnchor, constant: -15),
-            button.topAnchor.constraint(equalTo: wrapper.topAnchor, constant: 15),
-            button.bottomAnchor.constraint(equalTo: wrapper.bottomAnchor, constant: -15)
-        ])
-
-        viewModels.forEach { viewModel in
-            let inputField = InputField<InputFieldViewModel>()
-            inputField.setup(viewModel: viewModel)
-            stackView.addArrangedSubview(inputField)
-        }
-
-        stackView.addArrangedSubview(wrapper)
-        button.setup(viewModel: buttonViewModel)
     }
 
 }

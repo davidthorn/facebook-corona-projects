@@ -67,7 +67,7 @@ enum RegistrationField: String, CaseIterable{
         guard let value = value else { return false }
         switch self {
         case .name:
-            return value.count > 2
+            return value.count > 7
         case .lastname:
             return value.count > 2
         case .email:
@@ -76,6 +76,15 @@ enum RegistrationField: String, CaseIterable{
             return value.count >= 6
         case .passwordConf:
             return value.count >= 6
+        }
+    }
+
+    var isSecure: Bool {
+        switch self {
+        case .password, .passwordConf:
+            return true
+        default:
+            return false 
         }
     }
 }
